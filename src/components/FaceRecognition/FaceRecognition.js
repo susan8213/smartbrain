@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./FaceRecognition.css";
 
 export default function FaceRecognition({ imageUrl, boxes }) {
@@ -13,3 +14,8 @@ export default function FaceRecognition({ imageUrl, boxes }) {
     </div>
   );
 }
+
+FaceRecognition.propTypes = {
+  imageUrl: PropTypes.string.isRequired,
+  boxes: PropTypes.array.isRequired
+};
