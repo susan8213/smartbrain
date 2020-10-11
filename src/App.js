@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Particles from "react-particles-js";
 import Clarifai from "clarifai";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
@@ -8,15 +9,24 @@ import Rank from "./components/Rank/Rank";
 import particlesOptions from "./particlesjs-config.json";
 import "./App.css";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
+import Signin from "./components/Signin/Signin";
+import Register from "./components/Register/Register";
 
 const FaceApp = new Clarifai.App({
   apiKey: "051ff981dbdc4ffeb04e0926719704ab"
 });
 
 function App() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [boxes, setBoxes] = useState([]);
+
+  const signin = data => {
+    setIsSignedIn(true);
+    console.log(data);
+  };
+  const signout = () => setIsSignedIn(false);
 
   const onInputChange = event => setInput(event.target.value);
 
@@ -44,15 +54,39 @@ function App() {
 
   return (
     <div className="App">
-      <Particles className="particles" params={particlesOptions} />
-      <Navigation />
-      <Logo />
-      <Rank />
-      <ImageLinkForm
-        onSubmitHandler={onSubmitHandler}
-        onInputChange={onInputChange}
-      />
-      <FaceRecognition imageUrl={imageUrl} boxes={boxes} />
+      <Router>
+        <Particles className="particles" params={particlesOptions} />
+        <Navigation isSignedIn={isSignedIn} signoutHandler={signout} />
+        <Logo />
+        <Route exact path="/">
+          {isSignedIn ? (
+            <>
+              <Rank />
+              <ImageLinkForm
+                onSubmitHandler={onSubmitHandler}
+                onInputChange={onInputChange}
+              />
+              <FaceRecognition imageUrl={imageUrl} boxes={boxes} />
+            </>
+          ) : (
+            <Redirect to="/login" />
+          )}
+        </Route>
+        <Route exact path="/login">
+          {!isSignedIn ? (
+            <Signin signinHandler={signin} />
+          ) : (
+            <Redirect to="/" />
+          )}
+        </Route>
+        <Route exact path="/register">
+          {!isSignedIn ? (
+            <Register registerHandler={signin} />
+          ) : (
+            <Redirect to="/" />
+          )}
+        </Route>
+      </Router>
     </div>
   );
 }

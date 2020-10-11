@@ -25,3 +25,7 @@ button {
   display: flex;
   justify-content: center;
 }
+
+.background-ivory {
+  background-color: #e9ecef;
+}
