@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Api from "../../helper/api";
 
 export default function Signin({ signinHandler }) {
   const [formData, setFormData] = useState({});
+  const [errMsg, setErrMsg] = useState("");
   const onChnageHandler = event => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
   const onSubmitHandler = event => {
     event.preventDefault();
-    signinHandler(formData);
+    new Api()
+      .signIn(formData)
+      .then(response => signinHandler(response.data))
+      .catch(error => setErrMsg(error.response.data));
   };
 
   return (
@@ -19,14 +24,14 @@ export default function Signin({ signinHandler }) {
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Sign In</legend>
               <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="email-address">
+                <label className="db fw6 lh-copy f6" htmlFor="email">
                   Email
                 </label>
                 <input
                   className="pa2 input-reset ba bg-transparent hover-bg-white w-100"
                   type="email"
-                  name="email-address"
-                  id="email-address"
+                  name="email"
+                  id="email"
                   onChange={onChnageHandler}
                 />
               </div>
@@ -61,6 +66,7 @@ export default function Signin({ signinHandler }) {
               Not a memeber? Sign Up
             </Link>
           </div>
+          <div className="lh-copy mt3 f6 red b">{errMsg}</div>
         </div>
       </main>
     </article>
