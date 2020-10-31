@@ -37,4 +37,8 @@ export default class Api {
   increaseEntry = user => {
     return this.init().put(`/users/${user.id}/image`);
   };
+
+  detectFaces = imageUrl => {
+    return this.init().post("/detect/face", { url: imageUrl });
+  };
 }

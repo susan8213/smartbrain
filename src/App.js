@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Particles from "react-particles-js";
-import Clarifai from "clarifai";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Logo from "./components/Logo/Logo";
 import Navigation from "./components/Navigation/Navigation";
@@ -12,10 +11,6 @@ import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import Signin from "./components/Signin/Signin";
 import Register from "./components/Register/Register";
 import Api from "./helper/api";
-
-const FaceApp = new Clarifai.App({
-  apiKey: "051ff981dbdc4ffeb04e0926719704ab"
-});
 
 function App() {
   const [user, setUser] = useState();
@@ -38,15 +33,16 @@ function App() {
   const onSubmitHandler = () => {
     setImageUrl(input);
     setBoxes([]);
-    FaceApp.models
-      .predict(Clarifai.FACE_DETECT_MODEL, input)
+    new Api()
+      .detectFaces(input)
       .then(response => {
-        if (response) {
+        const data = response.data;
+        if (data) {
           new Api().increaseEntry(user).then(response => {
             setUser({ ...user, entries: response.data });
           });
+          displayFaceBox(data);
         }
-        displayFaceBox(response);
       })
       .catch(err => alert(err));
   };
