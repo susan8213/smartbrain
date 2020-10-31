@@ -42,9 +42,9 @@ function App() {
       .predict(Clarifai.FACE_DETECT_MODEL, input)
       .then(response => {
         if (response) {
-          new Api()
-            .increaseEntry(user)
-            .then(response => setUser(response.data));
+          new Api().increaseEntry(user).then(response => {
+            setUser({ ...user, entries: response.data });
+          });
         }
         displayFaceBox(response);
       })
