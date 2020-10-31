@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 export default function Navigation({ isSignedIn, signoutHandler }) {
@@ -24,3 +25,8 @@ export default function Navigation({ isSignedIn, signoutHandler }) {
     </nav>
   );
 }
+
+Navigation.propTypes = {
+  isSignedIn: PropTypes.bool.isRequired,
+  signoutHandler: PropTypes.func.isRequired
+};

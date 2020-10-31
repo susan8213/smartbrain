@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Api from "../../helper/api";
 
 export default function Register({ registerHandler }) {
@@ -75,3 +76,7 @@ export default function Register({ registerHandler }) {
     </article>
   );
 }
+
+Register.propTypes = {
+  registerHandler: PropTypes.func.isRequired
+};
