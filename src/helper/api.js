@@ -3,7 +3,7 @@ import axios from "axios";
 export default class Api {
   constructor() {
     this.api_token = null;
-    this.api_url = "http://localhost:3000";
+    this.api_url = process.env.REACT_APP_API_URL;
   }
 
   init = () => {
