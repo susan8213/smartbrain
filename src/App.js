@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import Particles from "react-particles-js";
+// import Particles from "react-particles-js";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Logo from "./components/Logo/Logo";
 import Navigation from "./components/Navigation/Navigation";
@@ -63,7 +63,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Particles className="particles" params={particlesOptions} />
         <Navigation isSignedIn={user ? true : false} signoutHandler={signout} />
         <Logo />
         <Route exact path="/">
