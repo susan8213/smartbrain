@@ -26,6 +26,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 2. User Sign-up/Sign-in function (Integrate with backend service (Node.js, PostgreSQL) by REST API)
 3. AI Face detection function
 4. Automatic unit test while git push
+5. Deploy to ~~Heroku~~ Render.com (it is Heroku Alternative platform)
 
 
 ## Available Scripts
