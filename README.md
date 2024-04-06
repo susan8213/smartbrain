@@ -1,4 +1,32 @@
+# Web Development Side Project - Smart Brain 🧠
+
+Based on the Udemy Course [The Complete Web Developer in 2020: Zero to Mastery](https://www.udemy.com/course/the-complete-web-developer-zero-to-mastery/)
+
+...
+
+Demo Web Page: https://smartbrain-h9i3.onrender.com
+
+Frontend Github Repository: https://github.com/susan8213/smartbrain
+
+Backend server API Github Repository: https://github.com/susan8213/smartbrain-api
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+...
+![BEE5C65E-FBF3-4445-B9DA-139B5A2B8F7D](https://github.com/susan8213/smartbrain/assets/22584134/b48ee247-8ffb-421b-8958-4a5d260bcfc3)
+
+<img width="1436" alt="screenshot" src="https://github.com/susan8213/smartbrain/assets/22584134/f07f04cc-ca47-4abc-bfe8-62931f952e93">
+
+
+
+
+## Features
+
+1. Responsive Web Design (React.js)
+2. User Sign-up/Sign-in function (Integrate with backend service (Node.js, PostgreSQL) by REST API)
+3. AI Face detection function
+4. Automatic unit test while git push
+
 
 ## Available Scripts
 
